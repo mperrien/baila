@@ -9,8 +9,9 @@
       "@/assets/*": ["src/assets/*"],
       "@/components/*": ["src/components/*"],
       "@/layouts/*": ["src/layouts/*"],
-      "@/styles/*": ["src/styles/*"]
-      // "@/types/*": ["src/types/*"],
+      "@/lib/*": ["src/lib/*"],
+      "@/styles/*": ["src/styles/*"],
+      "@/types/*": ["src/types/*"]
       // "@/utils/*": ["src/utils/*"]
     }
   }
