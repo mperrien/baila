@@ -1,0 +1,19 @@
+---
+import Form from "@/components/Form.vue";
+import Stats from "@/components/Stats.vue";
+---
+
+<main class="baila">
+  <Form client:load />
+  <Stats client:load />
+</main>
+
+<style lang="scss">
+  .baila {
+    grid-column: 2 / span 12;
+
+    min-height: 100vh;
+    // display: flex;
+    // justify-content: center;
+  }
+</style>

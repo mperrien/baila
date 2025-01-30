@@ -1,0 +1,13 @@
+:root {
+  --max-width: 130rem;
+  --space-base: 1.6rem;
+  --space-small: var(--space-base);
+  --space-medium: calc(2 * var(--space-small));
+  --space-large: calc(2 * var(--space-medium));
+
+  --body-font: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  --monospace-font: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  --base-font-size: 2rem;
+}
