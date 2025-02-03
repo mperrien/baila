@@ -1,19 +1,57 @@
 ---
-import Form from "@/components/Form.vue";
+import TheForm from "@/components/TheForm.vue";
 import Stats from "@/components/Stats.vue";
+import TheChart from "@/components/TheChart.vue";
+import ChartOne from "@/components/ChartOne.vue";
+import ChartTwo from "@/components/ChartTwo.vue";
+import ChartThree from "@/components/ChartThree.vue";
 ---
 
-<main class="baila">
-  <Form client:load />
-  <Stats client:load />
+<main class="baila container">
+  <TheForm client:load />
+  <section class="stats">
+    <h2>Stats</h2>
+    <div class="chartsWrapper">
+      <ChartOne client:load />
+      <ChartTwo client:load />
+      <ChartThree client:load />
+    </div>
+  </section>
 </main>
 
 <style lang="scss">
   .baila {
-    grid-column: 2 / span 12;
+    // grid-column: 2 / span 12;
+
+    // display: grid;
+    // grid-template-columns: subgrid;
 
     min-height: 100vh;
     // display: flex;
     // justify-content: center;
+
+    .stats {
+      // grid-column: 1 / span 12;
+
+      // display: grid;
+      // grid-template-columns: subgrid;
+
+      h2 {
+        // grid-column: 2 / span 12;
+
+        font-weight: 400;
+        text-align: center;
+      }
+
+      .chartsWrapper {
+        // grid-column: 1 / span 12;
+
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-medium);
+
+        padding-bottom: var(--space-large);
+      }
+    }
   }
 </style>

@@ -10,6 +10,7 @@
       "@/components/*": ["src/components/*"],
       "@/layouts/*": ["src/layouts/*"],
       "@/lib/*": ["src/lib/*"],
+      "@/stores/*": ["src/stores/*"],
       "@/styles/*": ["src/styles/*"],
       "@/types/*": ["src/types/*"]
       // "@/utils/*": ["src/utils/*"]

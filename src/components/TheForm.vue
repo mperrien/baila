@@ -76,14 +76,17 @@ async function submit() {
 }
 
 .form {
+  grid-column: 1 / span 12;
+
   display: grid;
   place-content: center;
-  height: 80%;
+  height: 90vh;
+  min-height: 36rem;
 
   // padding-top: var(--space-large);
   // padding-bottom: var(--space-large);
 
-  font-size: clamp(3.2rem, 3.2vw, 12rem);
+  font-size: clamp(3.2rem, 3.2vw, 5rem);
   font-weight: 700;
   text-align: center;
 
