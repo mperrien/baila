@@ -10,4 +10,20 @@
     "Segoe UI Symbol";
   --monospace-font: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
   --base-font-size: 2rem;
+
+  // Border radii
+  --border-radius-s: 0.4rem;
+  --border-radius-m: 0.6rem;
+  --border-radius-l: 1rem;
+  --border-radius-xl: 3.6rem;
+  --border-radius-xxl: 7.2rem;
+
+  // Box shadow
+  --box-shadow-sharp: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.025),
+    0 0.2rem 0.4rem rgba(0, 0, 0, 0.05), 0 0.8rem 0.8rem rgba(0, 0, 0, 0.08),
+    0 0.16rem 0.32rem rgba(0, 0, 0, 0.1);
+
+  --box-shadow-diffuse: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.025),
+    0 0.2rem 0.4rem rgba(0, 0, 0, 0.05), 0 0.8rem 0.8rem rgba(0, 0, 0, 0.08),
+    0 0.8rem 2.4rem rgba(0, 0, 0, 0.1);
 }

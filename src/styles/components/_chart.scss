@@ -1,0 +1,13 @@
+.chart {
+  // overflow: hidden;
+  padding: var(--space-small);
+
+  background-color: var(--less-black);
+  // border: 0.1rem solid white;
+  border-radius: var(--border-radius-m);
+  box-shadow: var(--box-shadow-diffuse);
+
+  &__content &__chart {
+    height: 100%;
+  }
+}
