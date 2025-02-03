@@ -9,11 +9,7 @@ import "@/styles/main.scss";
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Baila! · baila.perrien.fr</title>
-    <meta
-      name="description"
-      content="{Et|mais} c'est {l'amour|l'amor|la mort} qui t'a assassiné(é), {Marcia|Mathia|Mathias}."
-    />
+    <title>Astro Basics</title>
   </head>
   <body>
     <slot />
@@ -21,6 +17,10 @@ import "@/styles/main.scss";
 </html>
 
 <style is:global lang="scss">
+  :root {
+    --background-color: var(--almost-black);
+  }
+
   html,
   body {
     margin: 0;

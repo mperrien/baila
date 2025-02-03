@@ -155,9 +155,6 @@ async function refreshData() {
   height: calc(100vh - 16rem);
   min-height: 36rem;
 
-  // padding-top: var(--space-large);
-  // padding-bottom: var(--space-large);
-
   font-size: clamp(3.2rem, 3.2vw, 5rem);
   font-weight: 700;
   text-align: center;
