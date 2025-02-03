@@ -30,11 +30,25 @@
         Envoyer
       </button>
     </div>
+    <div class="form__error">
+      <div v-if="hasError">
+        <p>
+          Oups ! Il y a un problème.
+          <button type="button" @click.prevent="toggleDetails">
+            {{ areDetailsDisplayed ? "Masquer" : "Afficher" }} les détails
+          </button>
+        </p>
+        <p v-if="areDetailsDisplayed">{{ submitError }}</p>
+      </div>
+    </div>
   </form>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
+import { useStore } from "@nanostores/vue";
+
+import { submitEntry, $submitError } from "@/stores/submit";
 
 const first = ref<string>("et");
 const second = ref<string>("amor");
@@ -67,6 +81,17 @@ const result = computed<string>(() => {
 
 async function submit() {
   console.log(result.value);
+  await submitEntry(first.value, second.value, third.value, result.value);
+}
+
+const submitError = useStore($submitError);
+const hasError = computed<boolean>(() => {
+  return submitError.value !== "";
+});
+
+const areDetailsDisplayed = ref<boolean>(false);
+function toggleDetails() {
+  areDetailsDisplayed.value = !areDetailsDisplayed.value;
 }
 </script>
 
@@ -103,6 +128,22 @@ async function submit() {
     color: var(--text-accent);
     font-weight: inherit;
     text-align: center;
+  }
+
+  &__error {
+    height: 12rem;
+
+    font-size: 2rem;
+    font-weight: 400;
+
+    button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+
+      color: var(--text-accent);
+      text-decoration: underline;
+    }
   }
 }
 </style>
