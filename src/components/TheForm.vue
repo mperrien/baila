@@ -81,6 +81,8 @@ import {
   $isSubmitSuccessful,
 } from "@/stores/submit";
 
+import { getSuccess, getTotal, fetchStats } from "@/stores/stats";
+
 const first = ref<string>("et");
 const second = ref<string>("amor");
 const third = ref<string>("mathias");
@@ -115,6 +117,7 @@ async function submit() {
   isSubmitting.value = true;
   await submitEntry(first.value, second.value, third.value, result.value);
   isSubmitting.value = false;
+  await refreshData();
 }
 
 const submitError = useStore($submitError);
@@ -126,6 +129,14 @@ const hasError = computed<boolean>(() => {
 const areDetailsDisplayed = ref<boolean>(false);
 function toggleDetails() {
   areDetailsDisplayed.value = !areDetailsDisplayed.value;
+}
+
+async function refreshData() {
+  await getSuccess();
+  await getTotal();
+  await fetchStats(1);
+  await fetchStats(2);
+  await fetchStats(3);
 }
 </script>
 
