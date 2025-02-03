@@ -26,8 +26,32 @@
         type="button"
         @click.prevent="submit"
         class="button button--primary"
+        :class="{ buttonIsSubmitting: isSubmitting }"
+        :disabled="isSubmitting"
       >
-        Envoyer
+        <span>Envoyer</span>
+        <span v-if="isSubmitting">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xml:space="preserve"
+            viewBox="0 0 100 100"
+          >
+            <path
+              fill="#131211"
+              d="M73 50c0-12.7-10.3-23-23-23S27 37.3 27 50m3.9 0c0-10.5 8.5-19.1 19.1-19.1S69.1 39.5 69.1 50"
+            >
+              <animateTransform
+                attributeName="transform"
+                attributeType="XML"
+                dur="1s"
+                from="0 50 50"
+                repeatCount="indefinite"
+                to="360 50 50"
+                type="rotate"
+              />
+            </path>
+          </svg>
+        </span>
       </button>
     </div>
     <div class="form__error">
@@ -40,6 +64,9 @@
         </p>
         <p v-if="areDetailsDisplayed">{{ submitError }}</p>
       </div>
+      <div v-else-if="isSubmitSuccessful">
+        <p>Votre réponse a bien été prise en compte !</p>
+      </div>
     </div>
   </form>
 </template>
@@ -48,7 +75,11 @@
 import { ref, computed } from "vue";
 import { useStore } from "@nanostores/vue";
 
-import { submitEntry, $submitError } from "@/stores/submit";
+import {
+  submitEntry,
+  $submitError,
+  $isSubmitSuccessful,
+} from "@/stores/submit";
 
 const first = ref<string>("et");
 const second = ref<string>("amor");
@@ -79,12 +110,15 @@ const result = computed<string>(() => {
   return `${firstWords.value[first.value]} c'est ${secondWords.value[second.value]} qui t'a assassiné${isEDisplayed.value ? "e" : ""}, ${thirdWords.value[third.value]}.`;
 });
 
+const isSubmitting = ref<boolean>(false);
 async function submit() {
-  console.log(result.value);
+  isSubmitting.value = true;
   await submitEntry(first.value, second.value, third.value, result.value);
+  isSubmitting.value = false;
 }
 
 const submitError = useStore($submitError);
+const isSubmitSuccessful = useStore($isSubmitSuccessful);
 const hasError = computed<boolean>(() => {
   return submitError.value !== "";
 });
@@ -128,6 +162,32 @@ function toggleDetails() {
     color: var(--text-accent);
     font-weight: inherit;
     text-align: center;
+  }
+
+  .button {
+    position: relative;
+
+    > span:nth-child(2) {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
+      display: block;
+      height: 3.4rem;
+
+      transform: translate(-50%, -50%);
+
+      svg {
+        height: 100%;
+        width: auto;
+      }
+    }
+
+    &.buttonIsSubmitting {
+      > span:first-child {
+        color: transparent;
+      }
+    }
   }
 
   &__error {

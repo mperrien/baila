@@ -39,6 +39,10 @@ button,
     transform: translateY(0.1rem);
   }
 
+  &:disabled {
+    pointer-events: none;
+  }
+
   &--primary {
     background-color: var(--button-background);
 
