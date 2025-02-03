@@ -53,7 +53,6 @@ const chartOptions: ChartOptions = {
   borderColor: "transparent",
   plugins: {
     tooltip: {
-      // enabled: false,
       boxPadding: 5,
       callbacks: {
         label: function (context: any) {
@@ -83,7 +82,6 @@ const chartOptions: ChartOptions = {
           size: 20,
         },
         usePointStyle: true,
-        // point
         pointStyleWidth: 17,
       },
     },
