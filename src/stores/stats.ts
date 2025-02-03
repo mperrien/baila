@@ -1,15 +1,7 @@
-import { atom, map } from "nanostores";
+import { atom, map, computed } from "nanostores";
 import { supabase } from "@/lib/supabaseClient";
 
 import type { WordStats } from "@/types/types";
-
-export const $total = map<{
-  status: "empty" | "fetching" | "ready";
-  count: 0;
-}>({
-  status: "empty",
-  count: 0,
-});
 
 export const $first = map<WordStats>({
   et: 0,
@@ -29,19 +21,6 @@ export const $third = map<WordStats>({
 });
 
 export async function fetchStats(word: number) {
-  if ($total.get().status === "empty") {
-    $total.setKey("status", "fetching");
-    const { data } = await supabase.from("total").select();
-    console.log(data);
-    if (data) {
-      $total.set({
-        status: "ready",
-        count: data[0].count,
-      });
-    } else {
-      $total.setKey("status", "empty");
-    }
-  }
   if (word === 1) {
     const { data } = await supabase.from("first").select();
     if (data) {
@@ -69,5 +48,30 @@ export async function fetchStats(word: number) {
         $third.setKey(key, count);
       });
     }
+  }
+}
+
+const $success = atom<number>(0);
+const $total = atom<number>(0);
+export const $successRate = computed([$success, $total], () => {
+  if ($total.get() === 0) {
+    return 0;
+  } else {
+    const rate = $success.get() / $total.get();
+    return Math.round((rate * 100 + Number.EPSILON) * 1) / 1;
+  }
+});
+
+export async function getTotal() {
+  const { data } = await supabase.from("total").select();
+  if (data) {
+    $total.set(data[0].count);
+  }
+}
+
+export async function getSuccess() {
+  const { data } = await supabase.from("success").select();
+  if (data) {
+    $success.set(data[0].count);
   }
 }

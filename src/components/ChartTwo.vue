@@ -1,6 +1,6 @@
 <template>
   <div class="chart">
-    <div v-if="isLoading"></div>
+    <TheLoader v-if="isLoading" />
     <div v-else class="chart__content">
       <div class="chart__chart">
         <Pie :data="chartData" :options="opt" />
@@ -9,11 +9,13 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" scoped>
 import { ref, computed, onMounted } from "vue";
 import { useStore } from "@nanostores/vue";
 
 import { $second, fetchStats } from "@/stores/stats";
+
+import TheLoader from "@/components/TheLoader.vue";
 
 import type { DoughnutChartData } from "@/types/charts";
 import type { ChartOptions } from "chart.js";

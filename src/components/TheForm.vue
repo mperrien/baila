@@ -52,9 +52,9 @@ const secondWords = ref<{ [key: string]: string }>({
 });
 
 const thirdWords = ref<{ [key: string]: string }>({
-  mathia: "Mathia",
-  mathias: "Mathias",
   marcia: "Marcia",
+  mathias: "Mathias",
+  mathia: "Mathia",
 });
 
 const isEDisplayed = computed<boolean>(() => {
@@ -74,13 +74,15 @@ async function submit() {
 :root {
   --select-border-color: var(--text-color-dim);
 }
+</style>
 
+<style lang="scss" scoped>
 .form {
   grid-column: 1 / span 12;
 
   display: grid;
   place-content: center;
-  height: 90vh;
+  height: calc(100vh - 16rem);
   min-height: 36rem;
 
   // padding-top: var(--space-large);
