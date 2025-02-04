@@ -4,6 +4,7 @@ import ChartOne from "@/components/ChartOne.vue";
 import ChartTwo from "@/components/ChartTwo.vue";
 import ChartThree from "@/components/ChartThree.vue";
 import SuccessRate from "@/components/SuccessRate.vue";
+import HireMe from "@/components/HireMe.astro";
 ---
 
 <main class="baila container">
@@ -31,10 +32,12 @@ import SuccessRate from "@/components/SuccessRate.vue";
       <ChartThree client:load />
     </div>
   </section>
+  <HireMe />
 </main>
 
 <style lang="scss">
   .baila {
+    position: relative;
     // grid-column: 2 / span 12;
 
     // display: grid;
