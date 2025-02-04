@@ -2,7 +2,7 @@
   <section class="successRate">
     <dl>
       <dt>{{ successRate }}%</dt>
-      <dd>des visiteurs ont la bonne réponse !</dd>
+      <dd>des visiteurs ont la bonne réponse&nbsp;!</dd>
     </dl>
   </section>
 </template>
