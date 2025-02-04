@@ -67,7 +67,7 @@ const chartOptions: ChartOptions = {
             100;
 
           if (v) {
-            v += ` (${percent}%)`;
+            v = `${percent}%`;
           }
           return v;
         },
