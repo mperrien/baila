@@ -1,0 +1,87 @@
+<section class="hireMe">
+  <a href="https://perrien.fr">
+    <span class="text-ring"></span>
+  </a>
+</section>
+
+<script is:inline>
+  const RING = document.querySelector(".text-ring");
+
+  const OPTIONS = {
+    text: "Hire Me! • Embauchez-moi ! • ",
+    size: 2,
+    radius: 5,
+  };
+
+  RING.innerHTML = "";
+  const CHARS = OPTIONS.text.split("");
+  RING.style.setProperty("--total", CHARS.length);
+  RING.style.setProperty("--radius", OPTIONS.radius);
+  RING.style.setProperty("--font-size", OPTIONS.size);
+  const HIDDEN_CHARS = Object.assign(document.createElement("span"), {
+    ariaHidden: true,
+  });
+
+  for (let c = 0; c < CHARS.length; c++) {
+    HIDDEN_CHARS.innerHTML += `<span style="--index: ${c}">${CHARS[c]}</span>`;
+  }
+  RING.appendChild(HIDDEN_CHARS);
+  RING.innerHTML += `<span class="screen-reader-text">${OPTIONS.text}</span>`;
+</script>
+
+<style lang="scss">
+  .hireMe {
+    position: fixed;
+    right: var(--space-small);
+    bottom: var(--space-small);
+
+    a {
+      display: grid;
+      place-content: center;
+      height: 14rem;
+      width: 14rem;
+
+      color: var(--more-white);
+
+      &:hover,
+      &:active,
+      &:visited {
+        color: var(--more-white);
+      }
+
+      &:hover {
+        .text-ring {
+          animation-play-state: paused;
+        }
+      }
+
+      .text-ring {
+        position: relative;
+
+        animation: rotating 10s linear infinite;
+
+        :global([style*="--index"]) {
+          font-weight: bold;
+          font-family: monospace;
+          text-transform: uppercase;
+          font-size: calc(var(--font-size, 2) * 1rem);
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%)
+            rotate(calc(360deg / var(--total) * var(--index)))
+            translateY(calc(var(--radius, 5) * -1ch));
+        }
+      }
+    }
+  }
+
+  @keyframes rotating {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
