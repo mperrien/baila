@@ -7,6 +7,7 @@ on:
 
 jobs:
   ping:
+    environment: baila # env secrets are stored in this env
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
